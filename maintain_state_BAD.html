@@ -1,0 +1,49 @@
+<html>
+  <head>
+  </head>
+  <body>
+    <h1 id='greeting'></h1>
+    <button id='nameNextPerson' onclick="greetNext()">Greet Next Person</button>
+    <script>
+      var currentState = {
+        availableGreetings: ["Bob", "Mary", "Carson"],
+        greetingIndex: 0
+      }
+
+      var element = document.getElementById('greeting');
+      element.innerHTML = "Hello " +currentState.availableGreetings[currentState.greetingIndex];
+
+      //name in button
+      var nameState = {
+        availableNames: ["Bob", "Mary", "Carson"],
+        nameIndex: 1
+      }
+
+      var buttonName = document.getElementById('nameNextPerson');
+      buttonName.innerHTML = currentState.availableGreetings[currentState.greetingIndex];
+
+      //FUNCTION to maybe change?
+      function greetNext(){
+        currentState.greetingIndex += 1;
+        nameState.nameIndex += 1;
+
+        //we need to check to see if we are at the last greeting, and circle around to first if so
+        if(currentState.greetingIndex == currentState.availableGreetings.length && nameState.nameIndex == nameState.availableNames.length){
+          currentState.greetingIndex = 0;
+          nameState.nameIndex = 0;
+        }
+
+        //update the dom with new greeting
+        var element = document.getElementById('greeting');
+        element.innerHTML = "Hello " +currentState.availableGreetings[currentState.greetingIndex];
+
+        //update the dom with new name in the button
+        var buttonName = document.getElementById('nameNextPerson');
+        element.innerHTML = currentState.availableGreetings[currentState.greetingIndex];
+
+
+
+      }
+    </script>
+  </body>
+</html>

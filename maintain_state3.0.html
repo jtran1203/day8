@@ -1,0 +1,51 @@
+<html>
+  <head>
+  </head>
+  <body>
+    <h1 id='greeting'></h1>
+    <!--IMAGE-->
+    <img src="" id='pic'>
+
+    <br><button onclick="greetNext()" id='buttonName'>Greet Next Person</button>
+    <script>
+      var currentState = {
+          person: [
+            { name:"Bob", image:"bob.jpg"},
+            { name:"Mary", image:"mary.jpg"},
+            { name:"Carson", image:"carson.jpg"}
+          ],
+          greetingIndex: 0
+      }
+
+      var element = document.getElementById('greeting');
+      element.innerHTML = "Hello " +currentState.person[currentState.greetingIndex].name;
+
+      var picElement = document.getElementById('pic');
+      picElement.setAttribute('src', currentState.person[currentState.greetingIndex].image);
+
+      function greetNext(){
+        currentState.greetingIndex += 1;
+        var nextNameIndex;
+        //we need to check to see if we are at the last greeting, and circle around to first if so
+        if(currentState.greetingIndex == currentState.person.length){
+          currentState.greetingIndex = 0;
+        }
+
+        nextNameIndex = currentState.greetingIndex +1;
+        if(nextNameIndex == currentState.person.length){
+          nextNameIndex=0
+        }
+        //update the dom with new greeting
+        var element = document.getElementById('greeting');
+        element.innerHTML = "Hello " +currentState.person[currentState.greetingIndex].name;
+
+        var picElement = document.getElementById('pic');
+        picElement.setAttribute('src', currentState.person[currentState.greetingIndex].image);
+
+        var button = document.getElementById('buttonName');
+        button.innerHTML = currentState.person[nextNameIndex].name;
+        console.log(nextNameIndex);
+      }
+    </script>
+  </body>
+</html>
